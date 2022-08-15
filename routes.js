@@ -1,5 +1,6 @@
 const {readFileSync} = require('fs')
 const {Router, static} = require('express')
+const logRequest = require('./middleware/log')
 
 module.exports = Router()
 	.use(async(req,res,next) => next(res.locals=null))
