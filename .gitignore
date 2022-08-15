@@ -1,8 +1,4 @@
-node_modules
-/node_modules
-./node_modules
 .env
-storage
-*.xlsx
-*.zip
-*.csv
+node_modules
+storage/keys
+storage/build
