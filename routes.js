@@ -2,6 +2,8 @@ const path = require('path')
 const {readFileSync} = require('fs')
 const {Router, static} = require('express')
 const logRequest = require('./middleware/log')
+const src = path.join('/storage/_build',)
+console.log({src})
 
 module.exports = Router()
 	.use(async(req,res,next) => next(res.locals=null))
@@ -10,4 +12,7 @@ module.exports = Router()
 		const ssl = readFileSync("./public_access_files/ssl").toString()
 		res.send(ssl)
 	})
-	.use(static(path.join(__dirname, '/storage/build/')))
+	.get('/', (req,res) =>{
+		res.sendFile(path.join(__dirname , 'storage/build', 'index.html'));
+	})
+	.use(static('storage/build'))
