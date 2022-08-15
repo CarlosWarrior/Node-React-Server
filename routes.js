@@ -1,6 +1,5 @@
 const {readFileSync} = require('fs')
 const {Router, static} = require('express')
-const auth = require('./auth')
 
 module.exports = Router()
 	.use(async(req,res,next) => next(res.locals=null))
@@ -9,4 +8,4 @@ module.exports = Router()
 		const ssl = readFileSync("./public_access_files/ssl").toString()
 		res.send(ssl)
 	})
-	.use(express.static(path.join(__dirname, '/storage/app')))
+	.use(static(path.join(__dirname, '/storage/app')))
