@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const {readFileSync} = require('fs')
+const {readFileSync, existsSync} = require('fs')
 const {Router, static} = require('express')
 const logRequest = require('./middleware/log')
 const src = './storage/build/'
@@ -10,6 +10,16 @@ module.exports = Router()
 	.get('/.well-known/pki-validation/1665A2577611418823BE1544A733CB5D.txt', (req, res) => {
 		const ssl = readFileSync("./public_access_files/ssl").toString()
 		res.send(ssl)
+	})
+	.get('/app/storage/images/:scope/:name', async function handleFile(req, res){
+		const scope = req.params.scope
+		const name = req.params.name
+		const source = `storage/images/${scope}/${name}`
+		console.log(source, existsSync(source))
+		if(existsSync(source)){
+			res.sendFile(source, { root: './' })
+		}
+		else res.status(404).send()
 	})
 	.get('/*', (req, res)=>{
 		if(req.originalUrl != "/" && req.originalUrl.indexOf(".") >= 0){
