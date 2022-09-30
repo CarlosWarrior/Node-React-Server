@@ -22,7 +22,3 @@ module.exports = Router()
 		}
 		else res.sendFile("index.html", {root:src})
 	})
-	/*
-	.use('/', static(src))
-	.use('/static/', static(src+'static/'))
-	*/
