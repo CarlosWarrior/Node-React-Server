@@ -30,8 +30,8 @@ async function init(){
 
 if(process.env.production){
   let ssl = {
-    key: readFileSync("./storage/keys/private.key"),
-    cert: readFileSync("./storage/keys/public.crt"),
+    key: readFileSync("./storage/local-private.key"),
+    cert: readFileSync("./storage/local-public.crt"),
   }
   require('https')
     .createServer(ssl, app)

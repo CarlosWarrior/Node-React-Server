@@ -1,10 +1,12 @@
 class AppError extends Error {
-  constructor({status, message, errors = null}) {
-    super(message)
-    this.statusCode = status
-    this.errors = errors
-    Error.captureStackTrace(this, this.constructor);
-  }
+	constructor({ status, message, errors }) {
+		super(message)
+		this.name = this.constructor.name
+		this.statusCode = status
+		if (errors)
+		this.errors = errors
+		Error.captureStackTrace(this, this.constructor)
+	}
 }
-
-module.exports = c => {throw new AppError(c)};
+function Raise({ status, message, errors }) { throw new AppError({ status, message, errors }) }
+module.exports = Raise
