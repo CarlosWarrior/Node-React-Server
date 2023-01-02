@@ -37,4 +37,4 @@ if(process.env.production){
     .createServer(ssl, app)
     .listen(process.env.port_app, init)
 }
-else  process.env.host? app.listen(process.env.port_app, process.env.host, init) : app.listen(process.env.port_app, 	init)
+else app.listen(process.env.port_app, init)
