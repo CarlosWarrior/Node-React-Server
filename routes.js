@@ -7,7 +7,7 @@ const src = './storage/build/'
 module.exports = Router()
 	.use(async(req,res,next) => next(res.locals=null))
 	.use(logRequest)
-	.get('/.well-known/pki-validation/1665A2577611418823BE1544A733CB5D.txt', (req, res) => {
+	.get('/.well-known/pki-validation/E90498E7F175999ED2F682DF74104805.txt', (req, res) => {
 		const ssl = readFileSync("./public_access_files/ssl").toString()
 		res.send(ssl)
 	})
